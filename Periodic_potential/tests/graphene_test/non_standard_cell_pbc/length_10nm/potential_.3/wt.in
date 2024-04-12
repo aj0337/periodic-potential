@@ -20,7 +20,7 @@
  Nk1 = 201           ! number k points
  Nk2 = 201           ! number k points
  E_arc = 0.00   ! get eigenvalues around E_arc
- NumSelectedEigenVals = 10  ! number of selected eigenvalues
+ NumSelectedEigenVals = 2  ! number of selected eigenvalues
  /
 
 
@@ -35,10 +35,11 @@
 !   M   0.00000  0.50000  0.00000  G   0.00000  0.00000  0.00000
 
  KPATH_BULK
- 2  ! number of k-path
-   G   0.00000  0.00000  0.00000  K   0.33333  0.00000  0.00000
-   K   0.33333  0.00000  0.00000  G   0.00000  0.50000  0.00000
-!  M   0.25000  0.50000  0.00000  G   0.25000  0.00000  0.00000
+ 4  ! number of k-path
+   T   0.50000  0.66666  0.00000  K   0.50000  0.33333  0.00000
+   K   0.50000  0.33333  0.00000  G   0.50000  0.00000  0.00000
+   G   0.50000  0.00000  0.00000  K   0.50000  0.33333  0.00000
+   K   0.50000  0.33333  0.00000  T   0.50000  0.66666  0.00000
 
  LATTICE
  Angstrom

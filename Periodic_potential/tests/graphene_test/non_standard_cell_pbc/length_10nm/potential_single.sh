@@ -11,7 +11,7 @@ sed -i "s/\(^ *potential_height_U0 =\).*/\1 $potential/" $dirname/system.in
     cd $dirname
     /home/anooja/Work/tools/wannier_tools/utility/twisted_graphene_system_tight_binding/tgtbgen
 )
-cp wt.in $dirname/wt.in
+cp wt.in-line $dirname/wt.in
 emin=-2
 emax=2
 (

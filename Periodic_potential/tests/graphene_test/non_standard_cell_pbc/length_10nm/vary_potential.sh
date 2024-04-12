@@ -3,8 +3,8 @@
 # end=4
 # increment=1
 # for ((exponent = start; exponent <= end; exponent += increment)); do
-start=1
-end=3
+start=4
+end=6
 increment=1
 exponent=-1
 for ((value = start; value <= end; value += increment)); do
@@ -19,9 +19,9 @@ for ((value = start; value <= end; value += increment)); do
         /home/anooja/Work/tools/wannier_tools/utility/twisted_graphene_system_tight_binding/tgtbgen
     )
     # TODO Automate the modification of wt.in to allow the unfolding process if required
-    cp wt.in $dirname/wt.in
-    emin=0
-    emax=0.5
+    cp wt.in-bulk $dirname/wt.in
+    emin=-2.7
+    emax=2.7
     (
         cd $dirname
         /home/anooja/Work/tools/wannier_tools/bin/wt.x
