@@ -3,8 +3,8 @@
 # end=4
 # increment=1
 # for ((exponent = start; exponent <= end; exponent += increment)); do
-start=0
-end=5
+start=3
+end=4
 increment=1
 exponent=-1
 for ((value = start; value <= end; value += increment)); do
