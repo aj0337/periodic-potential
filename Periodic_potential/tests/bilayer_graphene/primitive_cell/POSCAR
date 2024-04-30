@@ -1,0 +1,12 @@
+Bilayer Graphene AB Stacking
+1.0
+2.46 0.00 0.00
+1.23 2.13 0.00
+0.00 0.00 10.00
+C
+4
+Direct
+0.0000 0.0000 0.0000  # C1, Layer 1
+0.6667 0.3333 0.0000  # C2, Layer 1
+0.3333 0.6667 0.5000  # C1, Layer 2 (directly above C2 of Layer 1)
+0.0000 0.0000 0.5000  # C2, Layer 2
