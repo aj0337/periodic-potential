@@ -1,25 +1,22 @@
 #!/usr/bin/env bash
-# start=-1
-# end=4
-# increment=1
-# for ((exponent = start; exponent <= end; exponent += increment)); do
-start=0
-end=140
-increment=50
-exponent=-1
-for ((value = start; value <= end; value += increment)); do
-    potential=$(bc <<<"scale=1; $value*10^$exponent")
+start=0.0
+end=0.5
+increment=0.6
+value=$start
+while [ $(echo "$value <= $end" | bc) -eq 1 ]; do
+    potential=$(echo "scale=2; $value" | bc)
     dirname=potential_$potential
-    mkdir -p $dirname
-    cp system.in POSCAR $dirname
-    sed -i "s/\(^ *potential_height_U0 =\).*/\1 $potential/" $dirname/system.in
-    (
-        cd $dirname
-        /home/anooja/Work/tools/wannier_tools/utility/twisted_graphene_system_tight_binding/tgtbgen
-    )
+    # mkdir -p $dirname
+    # cp system.in POSCAR $dirname
+    # sed -i "s/\(^ *potential_height_U0 =\).*/\1 $potential/" $dirname/system.in
+    # (
+    #     cd $dirname
+    #     /home/anooja/Work/tools/wannier_tools/utility/twisted_graphene_system_tight_binding/tgtbgen
+    # )
     cp wt.in $dirname/wt.in
     (
         cd $dirname
         /home/anooja/Work/tools/wannier_tools/bin/wt.x
     )
+    value=$(echo "$value + $increment" | bc)
 done

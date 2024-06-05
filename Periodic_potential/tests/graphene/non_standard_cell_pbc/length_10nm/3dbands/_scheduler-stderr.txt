@@ -1,0 +1,11 @@
+srun: Job 53573195 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Step created for job 53573195
+srun: Job 53573195 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Step created for job 53573195
+srun: Job 53573195 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Step created for job 53573195
+srun: First task exited 30s ago
+srun: StepId=53573195.7 tasks 0-7: running
+srun: StepId=53573195.7 tasks 8-15: exited
+srun: launch/slurm: _step_signal: Terminating StepId=53573195.7
+srun: Job step aborted: Waiting up to 92 seconds for job step to finish.

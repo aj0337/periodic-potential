@@ -9,7 +9,7 @@ use_poscar =   T
 hr_generate =   T
  
 ! gen_sparse_hr = F, hr.dat is in wannier90 format,  hr_generate = T, hr.dat is in sparse format
-gen_sparse_hr =   T
+gen_sparse_hr =   F
  
 ! hr_cutoff (eV) HmnR is set to zero if HmnR< hr_cutoff
 hr_cutoff =     0.001000
