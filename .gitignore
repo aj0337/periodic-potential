@@ -165,8 +165,11 @@ writing/
 Goncalo_TB/
 *.out
 *.dat*
+*.in-*
 *.gnu
 *.pdf
 *.png
 sites.txt
 POSCAR-*
+
+!notes/*.png
