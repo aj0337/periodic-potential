@@ -5,3 +5,5 @@
    ![alt text](notes/image.png)
 
 The issue seems to stem from the fact that arpack is buggy when looking for eigenvalues around 0. So it is best to set the energy around which the eigenvalues need to be computed to a small non-zero value. In wannier tools, one can control this using the E_Fermi value in wt.in. Since wt.in sets it to 0 by default, remember to change it to 0.0001 for instance. In numpy, the way to fix the issue is to set the sigma parameter in eigsh to a similar small non-zero value.
+
+2. The effect of adding an onsite term is that it shifts the Dirac cone to that point in energy. For e.g. if the onsite energy is set to -0.25 eV, the Dirac cone will now be at -0.25 eV. This needs to be considered when setting the E_fermi parameter in wt.in. It needs to be set to -0.25 eV if one is interested in the bands around the Dirac cone.
