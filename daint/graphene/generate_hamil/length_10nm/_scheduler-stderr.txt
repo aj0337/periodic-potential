@@ -1,0 +1,256 @@
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+ValueError: zero-size array to reduction operation minimum which has no identity
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+Traceback (most recent call last):
+  File "/scratch/snx3000/ajayaraj/tests/graphene/generate_hamil/length_10nm/test.py", line 79, in <module>
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    H.plot_bands(
+  File "/users/ajayaraj/software/tb-hamiltonian/src/tb_hamiltonian/hamiltonian.py", line 431, in plot_bands
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+    "ylim": (np.min(bands), np.max(bands)),
+  File "<__array_function__ internals>", line 5, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 2879, in amin
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/apps/daint/UES/jenkins/7.0.UP03/21.09/daint-mc/software/numpy/1.21.4-CrayGNU-21.09/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity
+srun: error: nid04171: tasks 12-23: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=54526277.0
+srun: error: nid04170: tasks 1-11: Exited with exit code 1

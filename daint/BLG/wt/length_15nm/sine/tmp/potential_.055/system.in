@@ -1,0 +1,15 @@
+&PARAMETERS
+twisted_system = F
+system_type = "BLG"
+use_poscar = T    ! use POSCAR or not,  T: we will use POSCAR, F: will generate POSCAR
+hr_generate = T    ! use POSCAR or not,  T: we will generate hr.dat
+gen_sparse_hr = F   ! use POSCAR or not,  T: we will generate hr.dat in sparse format
+hr_cutoff=0.00100  ! set HmnR=0 if HmnR<hr_cutoff
+iR_cut = 3   ! R is in [-iR_cut, -iR_cut+1, ..., iR_cut]
+onsite=-0.00d0
+first_neighbor_hopping = -2.7d0
+second_neighbor_hopping = 0.0d0
+third_neighbor_hopping = 0.0d0
+potential_type = "sine"
+potential_height_U0 = .055
+/

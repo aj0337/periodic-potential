@@ -1,0 +1,164 @@
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+ ham_bulk_coo_sparsehr
+
+
+Batch Job Summary Report (version 21.01.1) for Job "defs1" (54472000) on daint
+
+Job information (1/2)
+-----------------------------------------------------------------------------------------------------
+             Submit            Eligible               Start                 End    Elapsed Time limit
+------------------- ------------------- ------------------- ------------------- ---------- ----------
+2024-07-13T21:50:13 2024-07-13T21:50:13 2024-07-13T21:50:13 2024-07-13T22:13:03   00:22:50 1-00:00:00
+-----------------------------------------------------------------------------------------------------
+
+Job information (2/2)
+-------------------------------------------------------------
+    Username      Account    Partition   NNodes        Energy
+------------ ------------ ------------ -------- -------------
+    ajayaraj        s1267       normal        4   1088.451 kJ
+
