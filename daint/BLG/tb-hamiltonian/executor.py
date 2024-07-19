@@ -16,32 +16,31 @@ nn = 1  # number of nearest neighbors | don't use 0!
 workdir = Path(".")
 
 # lengths
-# lx = 5.0  # length in x direction (Å)
+# lx = 152.0  # length in x direction (Å)
 # ly = 2.7
 # # ly = lx / np.sqrt(3)  # length in y direction (Å) keeping the b/a ratio
 # lz = 10  # length in z direction (Å)
 # basepath = workdir / f"len_{lx}x{round(ly,3)}/nn_{nn}"
 
-# or, repetitions
-nx = 120  # number of repetitions in x direction
-ny = 120  # number of repetitions in y direction
-nz = 1  # number of repetitions in z direction
-basepath = workdir / f"rep_{nx}x{ny}/nn_{nn}"
+# # or, repetitions
+# nx = 20  # number of repetitions in x direction
+# ny = 1  # number of repetitions in y direction
+# nz = 1  # number of repetitions in z direction
+# basepath = workdir / f"rep_{nx}x{ny}/nn_{nn}"
 
-basepath.mkdir(parents=True, exist_ok=True)
+# basepath.mkdir(parents=True, exist_ok=True)
 
 # Define structure
-
 structure = get_structure(
     unit_cell_filepath=workdir / "POSCAR",  # local unit cell file
-    # lengths=(lx, ly, lz),
-    repetitions=(nx, ny, nz),
-    # structure_filepath=workdir
+    lengths=(lx, ly, lz),
+    # repetitions=(nx, ny, nz),
+    # structure_filepath=basepath
 )
 
 structure.info["label"] = "BLG"  # will show up at top of Hamiltonian output file
 
-structure.write(basepath / "POSCAR", format="vasp")
+# structure.write(basepath / "POSCAR", format="vasp")
 
 # Compute H
 
@@ -58,15 +57,15 @@ H.build()
 
 # Apply onsite term
 
-potential = PotentialFactory("triangular")
+potential = PotentialFactory("null")
 potential.params = {
-    "amplitude": 16e-3,
-    "width": 0.25,
+    "amplitude": 425e-3,
+    "width": 0.5,
 }
 H.update_onsite_terms(
     onsite_term=0.0,
     potential=potential,
-    alpha=(1.0, 0.3),
+    alpha=(1.0, 1.0),
 )
 path = (
     basepath / f"{potential.name}"
@@ -82,18 +81,21 @@ H.write_to_file(path, use_mpi=use_mpi)
 H.plot_bands(
     high_sym_points={
         "Γ": (0.00000, 0.00000, 0.00000),
+        "A": (0.00000, 0.30000, 0.00000),
         "P": (0.00000, 0.33333, 0.00000),
+        "B": (0.00000, 0.36666, 0.00000),
         "X": (0.00000, 0.50000, 0.00000),
         "Y": (0.50000, 0.00000, 0.00000),
-        "K": (1.0000, 0.33333, 0.00000),
-        "M": (1.0000, 0.00000, 0.00000),
+        "W": (0.50000, 0.50000, 0.00000),
+        "K": (1.00000, 0.33333, 0.00000),
+        "M": (1.00000, 0.00000, 0.00000),
     },
-    k_path="Γ K M Γ",
+    k_path="A P B",
     points_per_segment=144,
     use_sparse_solver=True,
-    sparse_solver_params={"k": 10, "sigma": 1e-8},
+    sparse_solver_params={"k": 40, "sigma": 1e-8},
     use_mpi=use_mpi,
-    fig_params={"ylim":(-0.03,0.03)},
+    fig_params={"ylim":(-0.1,0.1)},
     workdir=path,
     mode="scatter",
     plot_params={"s":5}
