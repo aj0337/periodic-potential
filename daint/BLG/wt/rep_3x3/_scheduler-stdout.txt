@@ -1,0 +1,30 @@
+ >> we are calculating HmnR at ir=           5
+  Time cost is :  3.999999957159162E-003  s
+ >> we are calculating HmnR at ir=           6
+  Time cost is :  2.000000094994903E-003  s
+ >> we are calculating HmnR at ir=           7
+  Time cost is :  2.000000094994903E-003  s
+ >> we are calculating HmnR at ir=           8
+  Time cost is :  1.999999862164259E-003  s
+ >> we are calculating HmnR at ir=           9
+  Time cost is :  2.000000094994903E-003  s
+ Total time cost is :  1.200000010430813E-002  s
+ nnz, nnzmax
+         232       10944
+
+
+Batch Job Summary Report (version 21.01.1) for Job "defs1" (54578969) on daint
+
+Job information (1/2)
+-----------------------------------------------------------------------------------------------------
+             Submit            Eligible               Start                 End    Elapsed Time limit
+------------------- ------------------- ------------------- ------------------- ---------- ----------
+2024-07-18T17:10:52 2024-07-18T17:10:52 2024-07-18T17:11:32 2024-07-18T17:11:41   00:00:09   08:00:00
+-----------------------------------------------------------------------------------------------------
+
+Job information (2/2)
+-------------------------------------------------------------
+    Username      Account    Partition   NNodes        Energy
+------------ ------------ ------------ -------- -------------
+    ajayaraj        s1267       normal        1      0.111 kJ
+
