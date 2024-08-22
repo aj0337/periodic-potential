@@ -172,5 +172,6 @@ Goncalo_TB/
 sites.txt
 POSCAR-*
 *.npy
+*_scheduler*
 
 !notes/*.png
