@@ -12,15 +12,48 @@ rank = comm.Get_rank()
 size = comm.Get_size()
 
 
+import numpy as np
+
 def compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator):
+    """
+    Computes the Berry curvature using finite differences over the Brillouin zone.
+
+    Parameters:
+    -----------
+    kpoints : list of list of float
+        List of k-points in the Brillouin zone for which to compute the Berry curvature.
+    dkx : float
+        The step size in the x-direction in reciprocal space.
+    dky : float
+        The step size in the y-direction in reciprocal space.
+    bnd_idx : int
+        The index of the band for which to compute the Berry curvature.
+    H_calculator : callable
+        A function that calculates the Hamiltonian at a given k-point.
+
+    Returns:
+    --------
+    berry_flux : float
+        The total Berry curvature over all k-points.
+
+    Equation:
+    ---------
+    The Berry curvature (F) is computed as:
+
+    F = Im(⟨∂kxψ|∂kyψ⟩ - ⟨∂kyψ|∂kxψ⟩)
+
+    where ψ is the wavefunction of the band at a given k-point, and ∂kx, ∂ky are the derivatives with respect to kx and ky.
+    """
     _, psi = compute_eigenstuff(H_calculator, kpoints)
     _, psi_dkx = compute_eigenstuff(H_calculator, [[k[0] + dkx, k[1]] for k in kpoints])
     _, psi_dky = compute_eigenstuff(H_calculator, [[k[0], k[1] + dky] for k in kpoints])
 
+    # Extract the wavefunction for the specific band
     psi = psi[:, :, bnd_idx]
     dpsi_dkx = (psi - psi_dkx[:, :, bnd_idx]) / dkx
     dpsi_dky = (psi - psi_dky[:, :, bnd_idx]) / dky
 
+    # Compute Berry flux using finite difference
     berry_flux = np.imag(
         np.einsum("ij,ij->i", np.conj(dpsi_dkx), dpsi_dky)
         - np.einsum("ij,ij->i", np.conj(dpsi_dky), dpsi_dkx)
@@ -29,6 +62,35 @@ def compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator):
 
 
 def compute_berry_curvature_log(kpoints, dkx, dky, bnd_idx, H_calculator):
+    """
+    Computes the Berry curvature using a logarithmic approach over the Brillouin zone.
+
+    Parameters:
+    -----------
+    kpoints : list of list of float
+        List of k-points in the Brillouin zone for which to compute the Berry curvature.
+    dkx : float
+        The step size in the x-direction in reciprocal space.
+    dky : float
+        The step size in the y-direction in reciprocal space.
+    bnd_idx : int
+        The index of the band for which to compute the Berry curvature.
+    H_calculator : callable
+        A function that calculates the Hamiltonian at a given k-point.
+
+    Returns:
+    --------
+    berry_flux_log : float
+        The total Berry curvature using the logarithmic approach.
+
+    Equation:
+    ---------
+    The Berry curvature in this approach is computed using a phase comparison of neighboring states:
+
+    F_log = Im(log(Ux * Uy * conj(Ux_dagger) * conj(Uy_dagger)))
+
+    where Ux and Uy are overlaps between wavefunctions at adjacent k-points in the x and y directions, and Ux_dagger, Uy_dagger are their complex conjugates.
+    """
     _, psi = compute_eigenstuff(H_calculator, kpoints)
     _, psi_right = compute_eigenstuff(
         H_calculator, [[k[0] + dkx, k[1]] for k in kpoints]
@@ -38,34 +100,63 @@ def compute_berry_curvature_log(kpoints, dkx, dky, bnd_idx, H_calculator):
         H_calculator, [[k[0] + dkx, k[1] + dky] for k in kpoints]
     )
 
+    # Extract the wavefunction for the specific band
     psi = psi[:, :, bnd_idx]
     psi_right = psi_right[:, :, bnd_idx]
     psi_up = psi_up[:, :, bnd_idx]
     psi_diag = psi_diag[:, :, bnd_idx]
 
+    # Overlaps between wavefunctions at neighboring k-points
     Ux = np.einsum("ij,ij->i", np.conj(psi), psi_right)
     Uy = np.einsum("ij,ij->i", np.conj(psi), psi_up)
     Ux_dagger = np.einsum("ij,ij->i", np.conj(psi_up), psi_diag)
     Uy_dagger = np.einsum("ij,ij->i", np.conj(psi_right), psi_diag)
 
+    # Berry flux using the logarithmic method
     berry_flux_log = np.imag(np.log(Ux * Uy * np.conj(Ux_dagger) * np.conj(Uy_dagger)))
 
     return np.sum(berry_flux_log)
 
 
 def compute_chern_number(kpoints, dkx, dky, bnd_idx, H_calculator):
-    # for k in kpoints:
-    #     kx, ky = k
-    #     berry_flux += compute_berry_curvature(kx, ky, dkx, dky, bnd_idx, H_calculator)
-    #     # berry_flux_log += compute_berry_curvature_log(
-    #     #     kx, ky, dkx, dky, bnd_idx, H_calculator
-    #     # )
-    # Normalization by BZ area
+    """
+    Computes the Chern number of a given band in a 2D lattice system.
+
+    Parameters:
+    -----------
+    kpoints : list of list of float
+        List of k-points in the Brillouin zone.
+    dkx : float
+        The step size in the x-direction in reciprocal space.
+    dky : float
+        The step size in the y-direction in reciprocal space.
+    bnd_idx : int
+        The index of the band for which to compute the Chern number.
+    H_calculator : callable
+        A function that calculates the Hamiltonian at a given k-point.
+
+    Returns:
+    --------
+    chern_number : float
+        The Chern number computed using the finite difference method.
+    chern_number_log : float
+        The Chern number computed using the logarithmic method.
+
+    Equation:
+    ---------
+    The Chern number (C) is computed as the integral of the Berry curvature (F) over the Brillouin zone:
+
+    C = (1 / 2π) ∫ F(kx, ky) d^2k
+
+    This is discretized over a mesh of k-points, with d^2k = dkx * dky.
+    """
+    # Compute Berry flux using the two different approaches
     berry_flux = compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator)
     berry_flux_log = compute_berry_curvature_log(
         kpoints, dkx, dky, bnd_idx, H_calculator
     )
 
+    # Normalize the Berry flux to compute the Chern number
     chern_number = berry_flux * dkx * dky / (2 * np.pi)
     chern_number_log = berry_flux_log * dkx * dky / (2 * np.pi)
     return chern_number, chern_number_log
@@ -116,4 +207,4 @@ if __name__ == "__main__":
 
     if rank == 0:
         print(f"Chern number: {chern_total}")
-        print(f"Chern number log: {chern_log_total}")
+        print(f"Chern number with log formula: {chern_log_total}")
