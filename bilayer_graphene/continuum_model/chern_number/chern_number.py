@@ -12,6 +12,7 @@ size = comm.Get_size()
 
 import numpy as np
 
+
 def compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator):
     """
     Computes the Berry curvature using finite differences over the Brillouin zone.
@@ -144,8 +145,22 @@ def compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator):
 
     F_wilson = Im(log(Ux * Uy * conj(Ux_dagger) * conj(Uy_dagger)))
 
-    where Ux and Uy are overlaps between wavefunctions at adjacent k-points in the x and y directions, and Ux_dagger, Uy_dagger are their complex conjugates.
+    where:
+    - \( U_x \) is the overlap between wavefunctions at neighboring k-points in the x-direction:
+        U_x = ⟨ψ(kx, ky) | ψ(kx + dkx, ky)⟩
+
+    - \( U_y \) is the overlap between wavefunctions at neighboring k-points in the y-direction:
+        U_y = ⟨ψ(kx, ky) | ψ(kx, ky + dky)⟩
+
+    - \( U_x^\dagger \) is the overlap between wavefunctions at neighboring k-points in the x-direction, shifted by \( dky \):
+        U_x^\dagger = ⟨ψ(kx, ky + dky) | ψ(kx + dkx, ky + dky)⟩
+
+    - \( U_y^\dagger \) is the overlap between wavefunctions at neighboring k-points in the y-direction, shifted by \( dkx \):
+        U_y^\dagger = ⟨ψ(kx + dkx, ky) | ψ(kx + dkx, ky + dky)⟩
+
+    The overlaps are computed using the inner product of the wavefunctions at the respective k-points.
     """
+
     _, psi = compute_eigenstuff(H_calculator, kpoints)
     _, psi_right = compute_eigenstuff(
         H_calculator, [[k[0] + dkx, k[1]] for k in kpoints]
@@ -168,7 +183,9 @@ def compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator):
     Uy_dagger = np.einsum("ij,ij->i", np.conj(psi_right), psi_diag)
 
     # Wilson loop Berry curvature
-    berry_flux_wilson = np.imag(np.log(Ux * Uy * np.conj(Ux_dagger) * np.conj(Uy_dagger)))
+    berry_flux_wilson = np.imag(
+        np.log(Ux * Uy * np.conj(Ux_dagger) * np.conj(Uy_dagger))
+    )
 
     return np.sum(berry_flux_wilson)
 
@@ -209,8 +226,12 @@ def compute_chern_number(kpoints, dkx, dky, bnd_idx, H_calculator):
     """
     # Compute Berry flux using the three different approaches
     berry_flux = compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator)
-    berry_flux_log = compute_berry_curvature_log(kpoints, dkx, dky, bnd_idx, H_calculator)
-    berry_flux_wilson = compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator)
+    berry_flux_log = compute_berry_curvature_log(
+        kpoints, dkx, dky, bnd_idx, H_calculator
+    )
+    berry_flux_wilson = compute_berry_curvature_wilson(
+        kpoints, dkx, dky, bnd_idx, H_calculator
+    )
 
     # Normalize the Berry flux to compute the Chern number
     chern_number = berry_flux * dkx * dky / (2 * np.pi)
