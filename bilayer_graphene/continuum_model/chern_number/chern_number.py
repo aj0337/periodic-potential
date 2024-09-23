@@ -60,63 +60,6 @@ def compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator):
     return np.sum(berry_flux)
 
 
-def compute_berry_curvature_log(kpoints, dkx, dky, bnd_idx, H_calculator):
-    """
-    Computes the Berry curvature using a logarithmic approach over the Brillouin zone.
-
-    Parameters:
-    -----------
-    kpoints : list of list of float
-        List of k-points in the Brillouin zone for which to compute the Berry curvature.
-    dkx : float
-        The step size in the x-direction in reciprocal space.
-    dky : float
-        The step size in the y-direction in reciprocal space.
-    bnd_idx : int
-        The index of the band for which to compute the Berry curvature.
-    H_calculator : callable
-        A function that calculates the Hamiltonian at a given k-point.
-
-    Returns:
-    --------
-    berry_flux_log : float
-        The total Berry curvature using the logarithmic approach.
-
-    Equation:
-    ---------
-    The Berry curvature in this approach is computed using a phase comparison of neighboring states:
-
-    F_log = Im(log(Ux * Uy * conj(Ux_dagger) * conj(Uy_dagger)))
-
-    where Ux and Uy are overlaps between wavefunctions at adjacent k-points in the x and y directions, and Ux_dagger, Uy_dagger are their complex conjugates.
-    """
-    _, psi = compute_eigenstuff(H_calculator, kpoints)
-    _, psi_right = compute_eigenstuff(
-        H_calculator, [[k[0] + dkx, k[1]] for k in kpoints]
-    )
-    _, psi_up = compute_eigenstuff(H_calculator, [[k[0], k[1] + dky] for k in kpoints])
-    _, psi_diag = compute_eigenstuff(
-        H_calculator, [[k[0] + dkx, k[1] + dky] for k in kpoints]
-    )
-
-    # Extract the wavefunction for the specific band
-    psi = psi[:, :, bnd_idx]
-    psi_right = psi_right[:, :, bnd_idx]
-    psi_up = psi_up[:, :, bnd_idx]
-    psi_diag = psi_diag[:, :, bnd_idx]
-
-    # Overlaps between wavefunctions at neighboring k-points
-    Ux = np.einsum("ij,ij->i", np.conj(psi), psi_right)
-    Uy = np.einsum("ij,ij->i", np.conj(psi), psi_up)
-    Ux_dagger = np.einsum("ij,ij->i", np.conj(psi_up), psi_diag)
-    Uy_dagger = np.einsum("ij,ij->i", np.conj(psi_right), psi_diag)
-
-    # Berry flux using the logarithmic method
-    berry_flux_log = np.imag(np.log(Ux * Uy * np.conj(Ux_dagger) * np.conj(Uy_dagger)))
-
-    return np.sum(berry_flux_log)
-
-
 def compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator):
     """
     Computes the Berry curvature using the Wilson loop approach over the Brillouin zone.
@@ -226,19 +169,15 @@ def compute_chern_number(kpoints, dkx, dky, bnd_idx, H_calculator):
     """
     # Compute Berry flux using the three different approaches
     berry_flux = compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator)
-    berry_flux_log = compute_berry_curvature_log(
-        kpoints, dkx, dky, bnd_idx, H_calculator
-    )
     berry_flux_wilson = compute_berry_curvature_wilson(
         kpoints, dkx, dky, bnd_idx, H_calculator
     )
 
     # Normalize the Berry flux to compute the Chern number
     chern_number = berry_flux * dkx * dky / (2 * np.pi)
-    chern_number_log = berry_flux_log * dkx * dky / (2 * np.pi)
     chern_number_wilson = berry_flux_wilson * dkx * dky / (2 * np.pi)
 
-    return chern_number, chern_number_log, chern_number_wilson
+    return chern_number, chern_number_wilson
 
 
 if __name__ == "__main__":
@@ -276,16 +215,14 @@ if __name__ == "__main__":
     kpoints_local = kpoints_split[rank]
 
     # Compute the Chern number for this subset of kx and ky values
-    chern_local, chern_log_local, chern_wilson_local = compute_chern_number(
+    chern_local, chern_wilson_local = compute_chern_number(
         kpoints_local, dkx, dky, bnd_idx, H_calculator
     )
 
     # Sum the local results to rank 0
     chern_total = comm.reduce(chern_local, op=MPI.SUM, root=0)
-    chern_log_total = comm.reduce(chern_log_local, op=MPI.SUM, root=0)
     chern_wilson_total = comm.reduce(chern_wilson_local, op=MPI.SUM, root=0)
 
     if rank == 0:
         print(f"Chern number: {chern_total}")
-        print(f"Chern number with log formula: {chern_log_total}")
         print(f"Chern number with Wilson loop: {chern_wilson_total}")
