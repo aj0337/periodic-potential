@@ -12,53 +12,6 @@ size = comm.Get_size()
 import numpy as np
 
 
-def compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator):
-    """
-    Computes the Berry curvature using finite differences over the Brillouin zone.
-
-    Parameters:
-    -----------
-    kpoints : list of list of float
-        List of k-points in the Brillouin zone for which to compute the Berry curvature.
-    dkx : float
-        The step size in the x-direction in reciprocal space.
-    dky : float
-        The step size in the y-direction in reciprocal space.
-    bnd_idx : int
-        The index of the band for which to compute the Berry curvature.
-    H_calculator : callable
-        A function that calculates the Hamiltonian at a given k-point.
-
-    Returns:
-    --------
-    berry_flux : float
-        The total Berry curvature over all k-points.
-
-    Equation:
-    ---------
-    The Berry curvature (F) is computed as:
-
-    F = Im(⟨∂kxψ|∂kyψ⟩ - ⟨∂kyψ|∂kxψ⟩)
-
-    where ψ is the wavefunction of the band at a given k-point, and ∂kx, ∂ky are the derivatives with respect to kx and ky.
-    """
-    _, psi = compute_eigenstuff(H_calculator, kpoints)
-    _, psi_dkx = compute_eigenstuff(H_calculator, [[k[0] + dkx, k[1]] for k in kpoints])
-    _, psi_dky = compute_eigenstuff(H_calculator, [[k[0], k[1] + dky] for k in kpoints])
-
-    # Extract the wavefunction for the specific band
-    psi = psi[:, :, bnd_idx]
-    dpsi_dkx = (psi - psi_dkx[:, :, bnd_idx]) / dkx
-    dpsi_dky = (psi - psi_dky[:, :, bnd_idx]) / dky
-
-    # Compute Berry flux using finite difference
-    berry_flux = np.imag(
-        np.einsum("ij,ij->i", np.conj(dpsi_dkx), dpsi_dky)
-        - np.einsum("ij,ij->i", np.conj(dpsi_dky), dpsi_dkx)
-    )
-    return np.sum(berry_flux)
-
-
 def compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator):
     """
     Computes the Berry curvature using the Wilson loop approach over the Brillouin zone.
@@ -78,7 +31,7 @@ def compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator):
 
     Returns:
     --------
-    berry_flux_wilson : float
+    total berry_flux : float
         The total Berry curvature using the Wilson loop approach.
 
     Equation:
@@ -167,16 +120,14 @@ def compute_chern_number(kpoints, dkx, dky, bnd_idx, H_calculator):
     This is discretized over a mesh of k-points, with d^2k = dkx * dky.
     """
     # Compute Berry flux using the three different approaches
-    berry_flux = compute_berry_curvature(kpoints, dkx, dky, bnd_idx, H_calculator)
     berry_flux_wilson = compute_berry_curvature_wilson(
         kpoints, dkx, dky, bnd_idx, H_calculator
     )
 
     # Normalize the Berry flux to compute the Chern number
-    chern_number = berry_flux * dkx * dky / (2 * np.pi)
-    chern_number_wilson = berry_flux_wilson * dkx * dky / (2 * np.pi)
+    chern_number = berry_flux_wilson * dkx * dky / (2 * np.pi)
 
-    return chern_number, chern_number_wilson
+    return chern_number
 
 
 if __name__ == "__main__":
@@ -216,14 +167,12 @@ if __name__ == "__main__":
     kpoints_local = kpoints_split[rank]
 
     # Compute the Chern number for this subset of kx and ky values
-    chern_local, chern_wilson_local = compute_chern_number(
+    chern_local = compute_chern_number(
         kpoints_local, dkx, dky, bnd_idx, H_calculator
     )
 
     # Sum the local results to rank 0
     chern_total = comm.reduce(chern_local, op=MPI.SUM, root=0)
-    chern_wilson_total = comm.reduce(chern_wilson_local, op=MPI.SUM, root=0)
 
     if rank == 0:
-        print(f"Chern number: {chern_total}")
-        print(f"Chern number with Wilson loop: {chern_wilson_total}")
+        print(f"Chern number with Wilson loop: {chern_total}")
