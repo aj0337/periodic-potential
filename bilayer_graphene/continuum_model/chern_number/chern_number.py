@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import sys
 import numpy as np
 
@@ -196,8 +195,9 @@ if __name__ == "__main__":
     # Constants for Brillouin zone grid
     nkpts = int(sys.argv[2]) if len(sys.argv) > 2 else 20
 
-    kx_vals = np.linspace(-np.pi, np.pi, nkpts)
-    ky_vals = np.linspace(-np.pi, np.pi, nkpts)
+    dcc = inputs["bond_length"]
+    kx_vals = np.linspace(-np.pi/dcc, np.pi/dcc, nkpts)
+    ky_vals = np.linspace(-2*np.pi/(np.sqrt(3)*dcc), 2*np.pi/(np.sqrt(3)*dcc), nkpts)
 
     dkx = kx_vals[1] - kx_vals[0]
     dky = ky_vals[1] - ky_vals[0]
