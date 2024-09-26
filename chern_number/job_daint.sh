@@ -22,4 +22,4 @@ module load daint-mc cray-python cray-fftw numpy libxc libvdwxc intel
 
 source "/users/ajayaraj/software/gpaw/gpaw-env/bin/activate"
 
-srun -n 48 python chern_number.py 14 48
+srun -n 48 python chern_test.py 14 48
