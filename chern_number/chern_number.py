@@ -89,6 +89,85 @@ def compute_berry_curvature_wilson(kpoints, dkx, dky, bnd_idx, H_calculator):
     return dkx * dky * np.sum(berry_flux)
 
 
+def compute_berry_curvature_wilson_multiband(kpoints, dkx, dky, bnd_indices, H_calculator):
+    """
+    Computes the Berry curvature using the Wilson loop approach over the Brillouin zone
+    for a set of degenerate bands.
+
+    Parameters:
+    -----------
+    kpoints : list of list of float
+        List of k-points in the Brillouin zone for which to compute the Berry curvature.
+    dkx : float
+        The step size in the x-direction in reciprocal space.
+    dky : float
+        The step size in the y-direction in reciprocal space.
+    bnd_indices : list of int
+        A list of indices corresponding to the degenerate bands for which to compute the Berry curvature.
+    H_calculator : callable
+        A function that calculates the Hamiltonian at a given k-point.
+
+    Returns:
+    --------
+    total berry_flux : float
+        The total Berry curvature using the Wilson loop approach for the degenerate bands.
+
+    Equation:
+    ---------
+    The Berry curvature in the Wilson loop approach for degenerate bands is computed as:
+
+    F_wilson = ∫ Im(log(det(Ox * Oy * Ox_reverse * Oy_reverse))) d^2k
+
+    where the overlaps are now matrix overlaps between subspaces spanned by the degenerate bands:
+
+    - \( O_x \) is the overlap between wavefunctions at neighboring k-points in the x-direction:
+        O_x = ⟨ψ(kx, ky) | ψ(kx + dkx, ky)⟩ (matrix for degenerate bands)
+
+    - \( O_y \) is the overlap between wavefunctions at neighboring k-points after moving in the x-direction, in the y-direction:
+        O_y = ⟨ψ(kx + dkx, ky) | ψ(kx + dkx, ky + dky)⟩ (matrix for degenerate bands)
+
+    - \( O_x_{\text{reverse}} \) is the overlap between wavefunctions at neighboring k-points after moving in the y-direction, in the reverse x-direction:
+        O_x_{\text{reverse}} = ⟨ψ(kx + dkx, ky + dky) | ψ(kx, ky + dky)⟩ (matrix for degenerate bands)
+
+    - \( O_y_{\text{reverse}} \) is the overlap between wavefunctions at neighboring k-points after moving in the reverse x-direction, in the reverse y-direction:
+        O_y_{\text{reverse}} = ⟨ψ(kx, ky + dky) | ψ(kx, ky)⟩ (matrix for degenerate bands)
+
+
+    The overlaps are computed using the inner product of the wavefunctions at the respective k-points.
+    """
+
+    # Step 1: Compute the eigenstates for the set of k-points
+    _, psi = compute_eigenstuff(H_calculator, kpoints)
+    _, psi_right = compute_eigenstuff(
+        H_calculator, [[k[0] + dkx, k[1]] for k in kpoints]
+    )
+    _, psi_up = compute_eigenstuff(H_calculator, [[k[0], k[1] + dky] for k in kpoints])
+    _, psi_diag = compute_eigenstuff(
+        H_calculator, [[k[0] + dkx, k[1] + dky] for k in kpoints]
+    )
+
+    # Step 2: Extract the wavefunctions for the set of degenerate bands
+    psi = psi[:, :, bnd_indices]  # Shape: (k-points, wavefunctions, degenerate bands)
+    psi_right = psi_right[:, :, bnd_indices]
+    psi_up = psi_up[:, :, bnd_indices]
+    psi_diag = psi_diag[:, :, bnd_indices]
+
+    # Step 3: Compute the overlap matrices between the degenerate bands at neighboring k-points
+    Ox = np.einsum("ijk,ilk->ijl", np.conj(psi), psi_right)  # Overlap matrix in x-direction
+    Oy = np.einsum("ijk,ilk->ijl", np.conj(psi_right), psi_diag)  # Overlap matrix in y-direction
+    Ox_reverse = np.einsum("ijk,ilk->ijl", np.conj(psi_diag), psi_up)  # Reverse x-direction
+    Oy_reverse = np.einsum("ijk,ilk->ijl", np.conj(psi_up), psi)  # Reverse y-direction
+
+    # Step 4: Compute the determinant of the product of overlap matrices
+    # This gives the total phase accumulated in the Wilson loop for the degenerate bands
+    Wilson_loop_matrix = np.matmul(np.matmul(Ox, Oy), np.matmul(Ox_reverse, Oy_reverse))
+    berry_flux = np.imag(np.log(np.linalg.det(Wilson_loop_matrix)))
+
+    # Step 5: Sum over the Berry flux contributions and normalize by the area of the grid cells
+    total_berry_flux = np.sum(berry_flux) * dkx * dky  # Normalize by grid cell area
+    return total_berry_flux
+
+
 def compute_chern_number(kpoints, dkx, dky, bnd_idx, H_calculator):
 
     """
