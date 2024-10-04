@@ -48,10 +48,15 @@ def H_calculator(k, params):
 
 
 def generate_kpoints(kx_min, kx_max, dkx, ky_min, ky_max, dky):
+    # Create grid of kx and ky values
     kx_values = np.arange(kx_min, kx_max + dkx, dkx)
     ky_values = np.arange(ky_min, ky_max + dky, dky)
 
-    kpoints = np.array([[kx, ky] for kx in kx_values for ky in ky_values])
+    # Use np.meshgrid to create the grid and flatten the arrays
+    kx_grid, ky_grid = np.meshgrid(kx_values, ky_values, indexing='ij')
+
+    # Stack the flattened kx and ky arrays into pairs of points
+    kpoints = np.column_stack([kx_grid.ravel(), ky_grid.ravel()])
 
     return kpoints
 
