@@ -39,33 +39,6 @@ def compute_eigenstuff(H_calculator, kpoints, params):
         eigvecs.append(vec)
     return np.array(eigvals), np.array(eigvecs)
 
-def generate_kgrid(N,a=1):
-    """Generate a grid of k-points in the Brillouin zone"""
-    kx = np.linspace(-np.pi/a, np.pi/a, N)
-    ky = np.linspace(-np.pi/a, np.pi/a, N)
-    kpoints = np.array([[kx[i], ky[j]] for i in range(N) for j in range(N)])
-    return kpoints
-
-
-def generate_kpoints_along_path(path, N=100):
-    """Generate k-points along a specified path in the Brillouin zone."""
-    kpoints = []
-    distances = [0]  # This will track the cumulative distance along the path
-
-    # Generate k-points along the path
-    for i in range(len(path) - 1):
-        start, end = np.array(path[i]), np.array(path[i + 1])
-        segment = np.linspace(start, end, N)
-        kpoints.extend(segment)
-
-        # Calculate the cumulative distance for each point in the segment
-        delta_k = np.linalg.norm(end - start) / N
-        for j in range(1, N + 1):
-            distances.append(distances[-1] + delta_k)  # Cumulative distance
-
-    kpoints = np.array(kpoints)
-    distances = np.array(distances[:len(kpoints)])  # Ensure matching lengths
-    return kpoints, distances
 
 def H_calculator(k, params):
     return haldane_hamiltonian(k, params)
