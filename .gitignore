@@ -173,5 +173,6 @@ sites.txt
 POSCAR-*
 *.npy
 *_scheduler*
+.vscode/
 
 !notes/*.png
