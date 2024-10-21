@@ -1,0 +1,3 @@
+Band 73: Chern number = 0.01860102524198515
+Band 74: Chern number = -1.4613099743300735
+Band 75: Chern number = -2.85812962785112

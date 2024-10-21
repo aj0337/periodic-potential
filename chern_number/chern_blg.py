@@ -1,8 +1,8 @@
+import os
 from mpi4py import MPI
 import numpy as np
 
-from tb_hamiltonian.continuum import compute_eigenstuff, interpolate_path
-from tb_hamiltonian.utils import BandStructure
+from tb_hamiltonian.continuum import compute_eigenstuff
 from tb_hamiltonian.continuum import GrapheneContinuumModel
 
 # MPI initialization
@@ -61,7 +61,7 @@ def compute_chern_number(kpoints, dkx, dky, delta, bnd_idx, H_calculator):
 
 # ### Parallelization over kpoints
 
-def parallel_compute_chern_number(kpoints, dkx, dky, delta, bnd_idx, H_calculator):
+def parallel_compute_berry_curvature_and_chern(kpoints, dkx, dky, delta, bnd_idx, H_calculator):
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
@@ -90,28 +90,29 @@ def parallel_compute_chern_number(kpoints, dkx, dky, delta, bnd_idx, H_calculato
 
     # Compute the Chern number on the root process
     if rank == 0:
-        chern_number = np.sum(berry_curvature * dkx * dky) / (2 * np.pi)
-        return chern_number
+        berry_curvature = berry_curvature * dkx * dky
+        chern_number = np.sum(berry_curvature) / (2 * np.pi)
+        return berry_curvature, chern_number
     else:
-        return None
+        return None, None
 
 
 inputs = dict(
     bond_length=1.425,
     interlayer_hopping=0.22,
     superlattice_potential_periodicity=500,
-    superlattice_potential_amplitude=0.020,
-    gate_bias=-0.025,
+    superlattice_potential_amplitude=10e-3,
+    gate_bias=-5e-3,
     layer_potential_ratio=0.3,
     nearest_neighbor_order=3,
 )
 
 model = GrapheneContinuumModel(**inputs)
 
-# Generate kpoints (only on rank 0)
+dkx, dky = 1e-4, 1e-4
+
 if rank == 0:
     a = inputs["superlattice_potential_periodicity"]
-    dkx, dky = 0.01, 0.01
     kx_min, kx_max = -np.pi/a, np.pi/a + dkx
     ky_min, ky_max = -2*np.pi/(np.sqrt(3)*a), 2*np.pi/(np.sqrt(3)*a) + dky
     kpoints = generate_kpoints(kx_min, kx_max, dkx, ky_min, ky_max, dky)
@@ -121,13 +122,41 @@ else:
 # Broadcast kpoints to all processes
 kpoints = comm.bcast(kpoints, root=0)
 
-# Compute Chern number in parallel
+# Directory to store Berry curvature files
+output_dir = "data/berry_curvature_blg"
+chern_output_dir = "data/chern_blg"
+
+if rank == 0:
+    # Create directories if they don't exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    if not os.path.exists(chern_output_dir):
+        os.makedirs(chern_output_dir)
 
 H_calculator = model.H_total_K
-bnd_idx = 15
-dkx, dky = 0.01, 0.01
-chern_number = parallel_compute_chern_number(kpoints, dkx, dky, delta=1e-2, bnd_idx=bnd_idx, H_calculator=H_calculator)
+nbands = H_calculator(np.array([0, 0])).shape[0]
+mid_band = int(nbands / 2)
+# List of band indices you want to compute the Berry curvature for
+bnd_indices = np.arange(mid_band-1,mid_band+2,1)  # You can modify this list to compute for other bands
 
-# Print result on rank 0
-if rank == 0:
-    print("Chern number:", chern_number)
+# File to store Chern numbers for each band
+chern_filename = os.path.join(chern_output_dir, 'chern_numbers.txt')
+
+# Loop over band indices
+for bnd_idx in bnd_indices:
+    # Call the existing function to compute the Berry curvature and Chern number
+    berry_curvature, chern_number = parallel_compute_berry_curvature_and_chern(
+        kpoints, dkx, dky, delta=1e-5, bnd_idx=bnd_idx, H_calculator=H_calculator
+    )
+
+    if rank == 0:
+        # Prepare data for saving: combine kpoints and berry_curvature
+        data_to_save = np.column_stack((kpoints, berry_curvature))
+
+        # Save the kx, ky, Berry curvature values for this band to a file
+        output_filename = os.path.join(output_dir, f'berry_curvature_band_{bnd_idx}.npy')
+        np.save(output_filename, data_to_save)
+
+        # Write the band index and Chern number to the file
+        with open(chern_filename, 'a') as chern_file:
+            chern_file.write(f"Band {bnd_idx}: Chern number = {chern_number}\n")

@@ -1,6 +1,10 @@
+import os
 from mpi4py import MPI
 import numpy as np
 
+# MPI initialization
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
 
 def haldane_hamiltonian(k, params):
     t = params["t"]
@@ -99,7 +103,7 @@ def compute_chern_number(kpoints, dkx, dky, delta, bnd_idx, H_calculator, params
 
 # ### Parallelization over kpoints
 
-def parallel_compute_chern_number(kpoints, dkx, dky, delta, bnd_idx, H_calculator, params):
+def parallel_compute_berry_curvature_and_chern(kpoints, dkx, dky, delta, bnd_idx, H_calculator, params):
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
@@ -129,18 +133,14 @@ def parallel_compute_chern_number(kpoints, dkx, dky, delta, bnd_idx, H_calculato
     # Compute the Chern number on the root process
     if rank == 0:
         chern_number = np.sum(berry_curvature * dkx * dky) / (2 * np.pi)
-        return chern_number
+        return berry_curvature, chern_number
     else:
-        return None
+        return None, None
 
-# MPI initialization
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-
+dkx, dky = 0.01, 0.01
 # Generate kpoints (only on rank 0)
 if rank == 0:
     a = 1
-    dkx, dky = 0.01, 0.01
     kx_min, kx_max = -np.pi/a, np.pi/a + dkx
     ky_min, ky_max = -2*np.pi/(np.sqrt(3)*a), 2*np.pi/(np.sqrt(3)*a) + dky
     kpoints = generate_kpoints(kx_min, kx_max, dkx, ky_min, ky_max, dky)
@@ -150,6 +150,11 @@ else:
 # Broadcast kpoints to all processes
 kpoints = comm.bcast(kpoints, root=0)
 
+# Directory to store Berry curvature files
+output_dir = "data/berry_curvature_haldane"
+if rank == 0 and not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
 # Compute Chern number in parallel
 
 params = {
@@ -158,9 +163,17 @@ params = {
     "M": 0.2
 }
 
-dkx, dky = 0.01, 0.01
-chern_number = parallel_compute_chern_number(kpoints, dkx, dky, delta=1e-2, bnd_idx=0, H_calculator=H_calculator, params=params)
+# List of band indices you want to compute the Berry curvature for
+bnd_indices = [0,1]  # You can modify this list to compute for other bands
 
-# Print result on rank 0
-if rank == 0:
-    print("Chern number:", chern_number)
+# Loop over band indices
+for bnd_idx in bnd_indices:
+    berry_curvature, chern_number = parallel_compute_berry_curvature_and_chern(kpoints, dkx, dky, delta=1e-2, bnd_idx=bnd_idx, H_calculator=H_calculator, params=params)
+
+    if rank == 0:
+        # Prepare data for saving: combine kpoints and berry_curvature
+        data_to_save = np.column_stack((kpoints, berry_curvature))
+        # Save the kx, ky, Berry curvature values for this band to a file
+        output_filename = os.path.join(output_dir, f'berry_curvature_band_{bnd_idx}.npy')
+        np.save(output_filename, data_to_save)
+        print(f"Band {bnd_idx}: Chern number = {chern_number}, Berry curvature saved to {output_filename}")
